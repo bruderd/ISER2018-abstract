@@ -5,16 +5,16 @@
 A parallel combination consists of several actuators arranged such that one end is attached to a common ground while the other is attached to a common end effector. We desire to control the position of that end effector by varying the internal pressures inside of the actuators. For a desired end effector position, we use a force balance model to solve for a corresponding set of actuator pressures.
 
 %% End effector forces can be written as a function of pressure and state
-With the internal pressure and displacements of the actuators described by state vectors $\p$ and $\q$, respectively, the position and orientation of the end effector described by a state vector $\x$, and assuming that an inverse kinematics function $\q(\x)$ allows the computation of  $\q$ in terms of $\x$ , the end effector force $\f$ can be expressed in terms of $\x$ and $\p$ as 
+With the internal pressure and displacements of the actuators described by the vector $\p$ and the position and orientation of the end effector described by a state vector $\x$, the end effector force $\f$ can be expressed in terms of $\x$ and $\p$ as 
 \begin{align}
-    \f (\x, \p) &= \J_x^T (\x) \p + \f_{\tx{elast}} \left( \q(\x) \right),
+    \f (\x, \p) &= \J_x^T (\x) \p + \f_{\tx{elast}} ( \x ),
 \end{align}
-where $\J_x = \frac{\partial \vec{V}}{\partial \x}$ is the \emph{fluid Jacobian} which relates the change in volume of the actuators ($\V$) to the change in the state of the end effector ($\x$), and $\f_\tx{elast}$ is the force due to the deformation of the elastomeric components of the actuators (cite: IROS).
+where $\J_x = \frac{\partial \vec{V}}{\partial \x}$ is the \emph{fluid Jacobian} which relates the change in volume of the actuators ($\V$) to the change in the state of the end effector ($\x$), and $\f_\tx{elast}$ is the force due to the deformation of the elastomeric components of the actuators (cite: IROS). $\J_x$ is constructed from known geometric parameters, while $\f_\tx{elast}$ is characterized via system identification (see section \ref{sec:experiments}).
 
 %% Solving for equilibrium points
 This expression enables us to determine the pressure required to actuate the system toward a desired equilibrium state, $\x_\tx{des}$, by solving the following force balance equation for $\p$,
 \begin{align}
-    0 &= \f (\x_{\tx{des}}, \p) + \f_\tx{load} =  \J_x^T (\x_\tx{des}) \p + \f_{\tx{elast}} \left( \q(\x_\tx{des}) \right) + \f_\tx{load} , 
+    0 &= \f (\x_{\tx{des}}, \p) + \f_\tx{load} =  \J_x^T (\x_\tx{des}) \p + \f_{\tx{elast}} (\x_\tx{des}) + \f_\tx{load} , 
     \label{eq:pequation}
 \end{align}
 where $\f_\tx{load}$ is the force imposed by external loads.
