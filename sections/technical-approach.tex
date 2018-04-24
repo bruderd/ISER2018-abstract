@@ -9,16 +9,16 @@ With the internal pressure and displacements of the actuators described by state
 \begin{align}
     \f (\x, \p) &= \J_x^T (\x) \p + \f_{\tx{elast}} \left( \q(\x) \right),
 \end{align}
-where $\J_x = \frac{\partial \vec{V}}{\partial \x}$ is the \emph{fluid Jacobian} which relates the change in volume of the actuators $\V$ to the change in the state of the end effector $\x$ (cite: IROS).
+where $\J_x = \frac{\partial \vec{V}}{\partial \x}$ is the \emph{fluid Jacobian} which relates the change in volume of the actuators ($\V$) to the change in the state of the end effector ($\x$), and $\f_\tx{elast}$ is the force due to the deformation of the elastomeric components of the actuators (cite: IROS).
 
 %% Solving for equilibrium points
-This expression enables us to determine the pressure required to actuate the system toward a desired equilibrium state, $\x_\tx{des}$, by solving the following equation for $\p$,
+This expression enables us to determine the pressure required to actuate the system toward a desired equilibrium state, $\x_\tx{des}$, by solving the following force balance equation for $\p$,
 \begin{align}
     0 &= \f (\x_{\tx{des}}, \p) + \f_\tx{load} =  \J_x^T (\x_\tx{des}) \p + \f_{\tx{elast}} \left( \q(\x_\tx{des}) \right) + \f_\tx{load} , 
     \label{eq:pequation}
 \end{align}
 where $\f_\tx{load}$ is the force imposed by external loads.
-Since \eqref{eq:pequation} is a linear equation in $\p$, it is amenable to efficient numerical solving methods. In principle, \eqref{eq:pequation} may have multiple solutions, so we restructure it as a quadratic program that minimizes the magnitude of the pressure input with inequality constraints ensure that the minimizer solves \eqref{eq:pequation} to within a desired tolerance, tol.
+Since \eqref{eq:pequation} is a linear equation of $\p$, it is amenable to efficient numerical solving methods. In principle, \eqref{eq:pequation} may have multiple solutions, so we restructure it as a quadratic program that minimizes the magnitude of the pressure input and has inequality constraints that ensure that the minimizer solves \eqref{eq:pequation} to within a desired tolerance, tol,
 
 \begin{equation}
 \begin{aligned}
@@ -33,13 +33,15 @@ Since \eqref{eq:pequation} is a linear equation in $\p$, it is amenable to effic
             \f_{\tx{elast}} + \f_\tx{load} + \text{tol} \\
             -\p^\text{min} \\ \p^\text{max}}
 \end{aligned}
+\label{eq:QP}
 \end{equation}
+where $Q$ is positive semi-definite (e.g. the identity matrix), and $\p^\tx{min/max}$ are the vectors containing the minimum and maximum allowable pressure for each actuator.
 
-This quadratic program can be performed quickly enough to enable equilibrium position control of the end effector by iterative solving \eqref{eq:pequation} in real time.
+If a desired end effector state $\x_\tx{des}$ lies within a system's workspace, \eqref{eq:QP} will converge to the control pressure needed to achieve it, but if $\x_\tx{des}$ lies outside the workspace \eqref{eq:QP} will fail to converge. Therefore, we can approximate the workspace of a system by sampling over its state space and taking the set of all values of $\x$ such that \eqref{eq:QP} converges. Furthermore, \eqref{eq:QP} can be solved quickly enough to enable real-time equilibrium position control of the end effector within its workspace.
 
 
 
-
+%This quadratic program can be solved quickly enough to enable equilibrium position control of the end effector by iterative solving  \eqref{eq:pequation} in real time.
 
 
 
