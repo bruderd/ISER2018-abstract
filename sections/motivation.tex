@@ -1,0 +1,80 @@
+\section{Motivation}    \label{sec:motivation}
+% Motivation, problem statement, related work
+
+%% Problem statement
+% Soft robotic systems require methods of actuation that do not inhibit their compliant structure. Parallel combinations of fiber-reinforced fluid-driven actuators are capable of generating controllable spacial forces without imposing rigidity.
+
+%% What are soft robots, why are they useful?
+Soft robotic systems have the potential to offer capabilities that go far beyond those of traditional rigid-bodied robots.
+Their compliant structure allows them to adapt their overall shape to navigate unstructured environments, to safely work alongside humans, to manipulate delicate goods, and to absorb impacts without damage \cite{majidi2014soft}. 
+
+%% Fluid-driven actuators are a good choice for soft robots
+To obtain all of these advantages, soft robotic systems require actuators that can produce forces without imposing a rigid structure. As a result, a large number of soft robotic systems are actuated by fluid-driven soft actuators \cite{grissom2006design, hawkes2017soft, marchese2014autonomous, tolley2014resilient}. 
+In these actuators, a pressurized fluid such as water or air induces a targeted deformation of a soft structure enclosing a fluid-filled cavity. 
+To achieve a specific type and direction of deformation, and not merely a homogeneous expansion, the stiffness of the soft structure is pattered by adding reinforcing elements such as fibers, beams, or plates \cite{galloway2013mechanically, marchese2015recipe, rus2015design}.
+
+%% Existing literature on the control of soft robots rely mainly on feed-forward control (with some notable exceptions). Goal of this paper is to demonstrate the capability of a model-based approach to achieve control
+The most common approach to controlling systems that are actuated by fluid-driven soft actuators is model-free feed-forward, such as in soft crawling robots (cite), fish (cite), etc (include more examples and citations). Such an approach is sufficient to demonstrate the novel capabilities of a soft structure or to generate repeated motions, but falls short in more complex tasks where non-periodic position/force control is desired. \Dan{Should probably also mention model-free PID} 
+
+%% Model-based control approach enables control of more complex behavior
+In this work we propose and validate a model-based control approach founded on the notion of a \emph{fluid Jacobian}, which linearly maps the geometrical deformation of a soft actuator, or of a system of actuators, to a change in their volume. 
+Due to its linear structure, this model enables the efficient numerical calculation of control inputs given a desired state.
+%The linear structure of this model enables efficient calculation of control inputs given a desired state.
+%% FREEs are customizable and well-suited for parallel combinations
+We demonstrate the efficacy of this approach by controlling the position of an end effector connected to parallel configurations of fiber-reinforced soft actuators, known as Fiber-Reinforced Elastomeric Enclosures (FREEs). 
+FREEs are used due to their versatility, % customizability?  
+since by merely changing the arrangement of a FREE's fiber reinforcements, it can be customized to yield a desired motion or force profile without constraining motion to occur exclusively in the direction of force \cite{bishop2015design, connolly2015mechanical, felt2018closed, krishnan2015kinematics, bishop2013force, bruder2017model, sedal2017constitutive}. This property makes them well suited to be combined in parallel, where the forces of individual actuators are superimposed to generate a multidimensional spacial force (cite IROS). 
+\Dan{I want it to be clear that the approach we use is not specific to FREEs, we have just chosen them to demonstrate our model. But I don't know if introducing them at the end of the section like this is best.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%% TEXT FROM IROS PAPER FOR REFERENCE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Examples of these actuators include bellows \cite{pridham1967bellows}, pneu-nets \cite{mosadegh2014pneumatic}, McKibben muscles \cite{tondu2012modelling}.
+
+%% FREEs are great because they are fluid-driven and customizable
+%A particularly promising type of soft fluid-driven actuator is the fiber-reinforced elasomeric enclosure (FREE) \cite{bishop2015design}. 
+%A FREE consists of a fluid-filled elastomeric tube wound with reinforcing fibers that pattern its stiffness to yield a desired mode and direction of deformation upon pressurization. %(Fig.~\ref{fig:FREEhand}). 
+%By changing the arrangement of these fibers, a FREE can be customized to yield a variety of desired deformations and forces \cite{bishop2015design}. 
+
+
+%% Basic argument: Rigid robots: structure constrained, actuators exert forces at joints to move structure,  Soft robots: structure unconstrained, actuators impose forces/constraints to move structure
+%Due to their soft and deformable structure, FREEs (and fluid driven soft actuators in general) differ in a fundamental way from traditional actuators.
+%An electric motor, for example, essentially combines a kinematic constraint (the rotation axis of the motor, which is physically defined by a pair of bearings) with a force generating element (the electromagnetic forces, which create the motor torque).
+%Since the motion of such an actuator is inherently limited to one dimension, multiple actuator stages are typically combined in \emph{series} to achieve multi degree of freedom (DOF) motions. 
+%This is the prevalent design, for example, in industrial robotic arms.
+%In contrast, in a soft actuator, the force generating element is not supported by any physical kinematic constraints.
+%The actuator produces a spatial force without constraining the motion to happen exclusively in the direction of this force.
+%Because of this, soft actuators are particularly well suited to be combined in \emph{parallel}, where the forces of the individual actuators are superimposed to generate a multi-dimensional spatial force.
+%Such parallel combinations enable particularly compact designs of multi-DOF motion stages.
+%They have equivalents in the world of traditional robotic systems, such as the well-known Steward Platform.
+%However, in such systems, the complexity is much higher, as each individual actuator needs to be combined with five additional joints to overcome the inherent kinematic constraints.
+
+
+%% Outline of paper
+%This paper explores the potential of combining different types of FREE actuators in parallel to achieve fully controllable spatial forces.
+%This work thus expands on the existing literature regarding fiber-reinforced fluid-driven actuators, which has focused mainly on the kinematics  \cite{bishop2015design, connolly2015mechanical, felt2018closed, krishnan2015kinematics} or kinetics \cite{bishop2013force, bruder2017model, sedal2017constitutive} of individual actuators, or the kinematics of parallel combinations of actuators \cite{bishop2012parallel, bishop2012parallelsynth}.
+%Here, we study which combinations and configurations of FREEs enable effective control of multi-DOF forces.
+%To this end, we present a novel way to represent and calculate actuator forces in terms of a state dependent fluid-Jacobian.
+%This concept readily extends from a single soft actuator to parallel combinations of actuators.
+%Our design and modelling methodology is employed and evaluated experimentally on a two degree of freedom test bench.
+
+
+
+% %% Existing literature 
+% Existing literature regarding fiber-reinforced fluid-driven actuators has focused on modeling the kinematics  \cite{bishop2015design, connolly2015mechanical, felt2018closed, krishnan2015kinematics} and kinetics \cite{bishop2013force, bruder2017model, sedal2017constitutive} of individual actuators, or the kinematics \cite{bishop2012parallel, bishop2012parallelsynth} and kinetics cite(BRUDER IROS) of parallel combinations of actuators . The aim of this work is to extend this work to control robotic systems that are actuated by parallel combinations of FREEs.
+
+
+

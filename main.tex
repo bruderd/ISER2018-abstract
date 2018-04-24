@@ -1,0 +1,115 @@
+\documentclass{svproc}
+% \usepackage[utf8]{inputenc}
+
+% Required packages by SVProc class
+\usepackage{multicol}
+\usepackage{footmisc}
+
+% Various packages
+\usepackage{float}
+\usepackage{comment}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{cite}
+
+% Various math packages
+\usepackage{amsmath}								
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{commath}
+\usepackage{float}
+\usepackage{units}
+
+% packages for drawings
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,trees,calc}
+\usetikzlibrary{backgrounds}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepgfplotslibrary{polar}
+\usepgfplotslibrary{patchplots}
+
+%% downsample images to make file smaller
+%\usepackage{epstopdf}
+%\epstopdfDeclareGraphicsRule{.pdf}{png}{.png}{convert #1 \OutputFile}
+%\DeclareGraphicsExtensions{.png,.pdf}
+
+% packages for 3d plotting with tikz
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+%\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+%\PreviewEnvironment{tikzpicture}
+%\setlength\PreviewBorder{2mm}
+
+% % Commands for theorems (already defined in SVProc class)
+% \newtheorem{definition}{Definition}[section]
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{assumption}{Assumption}[section]
+
+% Definitions of custom colors
+\definecolor{lightyellow}{RGB}{255,236,132}
+\definecolor{lightgreen}{RGB}{161,239,10}
+\definecolor{darkgreen}{RGB}{61,124,68}
+\definecolor{lightblue}{RGB}{72,131,219}
+\definecolor{darkblue}{RGB}{39,63,186}
+\definecolor{plgreen}{RGB}{27,158,119}
+\definecolor{plorange}{RGB}{217,95,2}
+\definecolor{plpurple}{RGB}{117,112,179}
+\definecolor{plpink}{RGB}{231,41,138}
+
+% Editing tools
+\usepackage{color}  % For Highlighting
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+\newcommand{\David}[1]{\textcolor{red}{(#1)}}
+\newcommand{\Ram}[1]{\textcolor{blue}{(#1)}}
+\newcommand{\Dan}[1]{\textcolor{magenta}{(#1)}}
+\newcommand{\Audrey}[1]{\textcolor{maroon}{(#1)}}
+
+% Set macros to make certain things easier
+\newcommand{\mtx}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\J}{\bar{J}}
+\newcommand{\C}{\bar{C}}
+\newcommand{\x}{\vec{x}}
+\newcommand{\q}{\vec{q}}
+\newcommand{\p}{\vec{p}}
+\newcommand{\T}{\vec{\tau}}
+\newcommand{\f}{\vec{f}}
+\newcommand{\tx}[1]{\text{#1}}
+\newcommand{\D}{\bar{\mathcal{D}}}
+
+\graphicspath{figures/}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+\begin{document}
+\mainmatter
+\title{Model-Based Control of Parallel Combinations of Fiber-Reinforced Soft Actuators}
+\titlerunning{Model-Based Control of Parallel Combinations of Soft Actuators}
+\author{Daniel Bruder \and C. David Remy \and Ram Vasudevan}
+\tocauthor{Daniel Bruder, C. David Remy, and Ram Vasudevan}
+\authorrunning{Daniel Bruder et al.}
+\institute{University of Michigan, Ann Arbor MI 48109, USA,\\
+\email{bruderd@umich.edu}}
+\maketitle
+
+% \input{sections/abstract.tex}
+% \newpage
+\input{sections/motivation.tex}
+\newpage
+\input{sections/technical-approach.tex}
+\newpage
+\input{sections/results.tex}
+\newpage
+\input{sections/experiments.tex}
+\newpage
+\input{sections/insights.tex}
+\newpage
+
+
+% references section
+\bibliographystyle{spmpsci}
+\bibliography{references}
+
+\end{document}
